@@ -112,7 +112,7 @@ export const AuroraBars = ({ className }: AuroraBarsProps) => {
           {bars.map((bar, index) => (
             <motion.div
               key={index}
-              className="w-full rounded-t-sm bg-gradient-to-t from-pink-400 via-pink-400/60 dark:from-pink-600 dark:via-pink-600/60 to-transparent"
+              className="w-full rounded-t-sm bg-linear-to-t from-pink-400 via-pink-400/60 dark:from-pink-600 dark:via-pink-600/60 to-transparent"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: bar.height, opacity: 1 }}
               transition={{
@@ -125,7 +125,7 @@ export const AuroraBars = ({ className }: AuroraBarsProps) => {
         </div>
 
         {/* Gradient Overlay to fade top and bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white/60 dark:from-zinc-950 dark:via-transparent dark:to-zinc-950/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-linear-to-b from-white via-transparent to-white/60 dark:from-zinc-950 dark:via-transparent dark:to-zinc-950/30 pointer-events-none" />
 
         {/* Hero Content */}
         <div className="relative z-10 flex flex-col items-center justify-center min-h-screen text-center px-4 pt-20">
