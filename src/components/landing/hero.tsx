@@ -1,26 +1,22 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";
-import { ArrowRight, Search, Sun, Moon } from "lucide-react";
-import { useTheme } from "next-themes";
+import { ArrowRight, Search } from "lucide-react";
+import { ThemeToggle } from "../ui/theme-toggle";
 
 interface AuroraBarsProps {
   className?: string;
 }
 
 export const AuroraBars = ({ className }: AuroraBarsProps) => {
-  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
 
-  const isDark = mounted ? resolvedTheme === "dark" : true;
-
-  // Heights relative to the container, creating a V-shape
   const bars = [
     { height: "65%", opacity: 0.3 },
     { height: "50%", opacity: 0.4 },
@@ -38,7 +34,7 @@ export const AuroraBars = ({ className }: AuroraBarsProps) => {
   ];
 
   return (
-    <div className={isDark ? "dark" : ""}>
+    <div>
       <div
         className={cn(
           "relative w-full min-h-screen bg-white dark:bg-zinc-950 text-zinc-900 dark:text-white overflow-hidden font-sans selection:bg-emerald-500/30",
@@ -94,16 +90,7 @@ export const AuroraBars = ({ className }: AuroraBarsProps) => {
             <button className="bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white px-5 py-2 rounded-full transition-colors">
               Get started
             </button>
-            <button
-              onClick={() => setTheme(isDark ? "light" : "dark")}
-              className="p-2 rounded-full hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-900 dark:text-white transition-colors"
-            >
-              {isDark ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </button>
+            <ThemeToggle />
           </div>
         </nav>
 
@@ -112,7 +99,7 @@ export const AuroraBars = ({ className }: AuroraBarsProps) => {
           {bars.map((bar, index) => (
             <motion.div
               key={index}
-              className="w-full rounded-t-sm bg-linear-to-t from-pink-400 via-pink-400/60 dark:from-pink-600 dark:via-pink-600/60 to-transparent"
+              className="w-full rounded-t-sm bg-linear-to-t from-primary via-primary/60 dark:from-primary dark:via-primary/60 to-transparent"
               initial={{ height: 0, opacity: 0 }}
               animate={{ height: bar.height, opacity: 1 }}
               transition={{
